@@ -46,12 +46,12 @@ export const JuegoScreen = ({ navigation }: any) => {
   const handleGameOver = () => {
     setPlaying(false);
 
-    if (usuarioActual) {
+    if (usuarioActual && usuarioActual.uid) {
         const currentScore = usuarioActual.maxScore || 0;
         const newScore = score > currentScore ? score : currentScore;
         const totalInsects = (usuarioActual.insectsCaught || 0) + (score / 10);
 
-        update(ref(db, 'usuarios/' + usuarioActual.username), {
+        update(ref(db, 'usuarios/' + usuarioActual.uid), {
             insectsCaught: totalInsects,
             maxScore: newScore
         });
@@ -165,4 +165,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
