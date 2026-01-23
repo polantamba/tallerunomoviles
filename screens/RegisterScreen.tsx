@@ -81,49 +81,78 @@ export const RegisterScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexGrow: 1,
-        backgroundColor: '#2c0085',
-        justifyContent: 'center',
-        padding: 30
+    container: { 
+        flexGrow: 1, 
+        backgroundColor: '#000000', 
+        padding: 40, 
+        justifyContent: 'center' 
     },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#38c53b',
-        marginBottom: 40,
-        textAlign: 'center'
-    },
-    form: {
-        marginBottom: 30
-    },
-    label: {
-        color: '#cbd5e1',
-        marginBottom: 8,
-        fontSize: 12,
-        fontWeight: 'bold'
-    },
-    input: {
-        backgroundColor: '#4c3782',
-        color: '#fff',
-        padding: 15,
-        borderRadius: 8,
-        marginBottom: 20
-    },
-    button: {
-        backgroundColor: '#4ace46',
-        padding: 15,
-        borderRadius: 8,
-        alignItems: 'center'
-    },
-    buttonText: {
-        color: '#0f172a',
-        fontWeight: 'bold',
-        fontSize: 16
-    },
-    link: {
-        color: '#94a3b8',
+    title: { 
+        fontSize: 50, 
+        fontWeight: '900', 
+        color: '#ffffff', 
         textAlign: 'center',
-        marginTop: 20
+        letterSpacing: -2,
+        marginBottom: 5,
     },
+    subtitle: {
+        fontSize: 12,
+        color: '#32be5e', 
+        letterSpacing: 5,
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        backgroundColor: 'rgba(50, 190, 94, 0.1)',
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 4,
+        textAlign: 'center',
+        alignSelf: 'center',
+        marginBottom: 50,
+    },
+    form: { 
+        gap: 20 
+    },
+    label: { 
+        fontSize: 12,
+        color: '#a0a0a0', 
+        letterSpacing: 3,
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        marginBottom: -10,
+        marginLeft: 2,
+    },
+    input: { 
+        backgroundColor: '#0a0a0a', 
+        color: '#ffffff', 
+        padding: 18, 
+        borderRadius: 0,
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 0.1)',
+        fontSize: 16,
+    },
+    button: { 
+        backgroundColor: '#ffffff', 
+        paddingVertical: 20, 
+        borderRadius: 0, 
+        alignItems: 'center', 
+        marginTop: 15,
+        borderLeftWidth: 8,
+        borderLeftColor: '#32be5e',
+    },
+    buttonText: { 
+        color: '#000000', 
+        fontWeight: '900',
+        fontSize: 14,
+        letterSpacing: 2,
+        textTransform: 'uppercase'
+    },
+    link: { 
+        color: '#32be5e', 
+        textAlign: 'center', 
+        marginTop: 25,
+        fontSize: 14,
+        fontWeight: '600',
+        letterSpacing: 1.2,
+        textTransform: 'uppercase'
+    }
 });
