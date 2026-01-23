@@ -1,117 +1,70 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { ref, get, child } from 'firebase/database';
-import { db, setUsuarioActual } from '../firebase/Config';
+import { auth, db, setUsuarioActual } from '../firebase/Config';
 
 export const LoginScreen = ({ navigation }: any) => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function login() {
-        if (username === '' || password === '') {
-            Alert.alert("Error", "Faltan datos");
-            return;
-        }
-
-        const dbRef = ref(db);
-
-        get(child(dbRef, 'usuarios/' + username)).then((snapshot) => {
-            if (snapshot.exists()) {
-                const userData = snapshot.val();
-                if (userData.password === password) {
-                    setUsuarioActual(userData);
-                    navigation.replace('HomeTabs');
-                } else {
-                    Alert.alert("Error", "Contraseña incorrecta");
-                }
-            } else {
-                Alert.alert("Error", "Usuario no encontrado");
-            }
-        }).catch(() => {
-            Alert.alert("Error", "Revisa tu conexión");
-        });
-    }
+    const login = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const userId = userCredential.user.uid;
+                
+                get(child(ref(db), `usuarios/${userId}`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        setUsuarioActual(snapshot.val());
+                        navigation.replace('HomeTabs');
+                    } else {
+                        Alert.alert("Error", "Datos no encontrados");
+                    }
+                });
+            })
+            .catch((error) => {
+                Alert.alert("Error", "Login fallido: " + error.message);
+            });
+    };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>ACCESO</Text>
+            <Text style={styles.title}>LOGIN</Text>
 
-            <View style={styles.form}>
-                <Text style={styles.label}>USUARIO</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Tu nombre de usuario"
-                    placeholderTextColor="#64748b"
-                    value={username}
-                    onChangeText={setUsername}
-                />
+            <TextInput 
+                style={styles.input} 
+                placeholder="Correo" 
+                placeholderTextColor="#aaa"
+                value={email} 
+                onChangeText={setEmail} 
+                autoCapitalize='none'
+            />
+            
+            <TextInput 
+                style={styles.input} 
+                placeholder="Contraseña" 
+                placeholderTextColor="#aaa"
+                value={password} 
+                onChangeText={setPassword} 
+                secureTextEntry
+            />
 
-                <Text style={styles.label}>CONTRASEÑA</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="****"
-                    placeholderTextColor="#64748b"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry
-                />
-
-                <TouchableOpacity style={styles.button} onPress={login}>
-                    <Text style={styles.buttonText}>ENTRAR</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.button} onPress={login}>
+                <Text style={styles.buttonText}>ENTRAR</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                <Text style={styles.link}>Crear cuenta nueva</Text>
+                <Text style={styles.link}>Crear cuenta</Text>
             </TouchableOpacity>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#000000',
-        justifyContent: 'center',
-        padding: 30
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#fff',
-        marginBottom: 40,
-        textAlign: 'center'
-    },
-    form: {
-        marginBottom: 30
-    },
-    label: {
-        color: '#cbd5e1',
-        marginBottom: 8,
-        fontSize: 12,
-        fontWeight: 'bold'
-    },
-    input: {
-        backgroundColor: '#334155',
-        color: '#fff',
-        padding: 15,
-        borderRadius: 8,
-        marginBottom: 20
-    },
-    button: {
-        backgroundColor: '#006f50',
-        padding: 15,
-        borderRadius: 8,
-        alignItems: 'center'
-    },
-    buttonText: {
-        color: '#0f172a',
-        fontWeight: 'bold',
-        fontSize: 16
-    },
-    link: {
-        color: '#94a3b8',
-        textAlign: 'center',
-        marginTop: 20
-    },
+    container: { flex: 1, backgroundColor: '#000000', padding: 30, justifyContent: 'center', gap: 20 },
+    title: { fontSize: 30, fontWeight: 'bold', color: '#fff', textAlign: 'center' },
+    input: { backgroundColor: '#334155', color: '#fff', padding: 15, borderRadius: 8 },
+    button: { backgroundColor: '#006f50', padding: 15, borderRadius: 8, alignItems: 'center' },
+    buttonText: { color: '#fff', fontWeight: 'bold' },
+    link: { color: '#94a3b8', textAlign: 'center', marginTop: 10 }
 });
