@@ -48,46 +48,62 @@ export const PuntuacionesScreen = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: { 
     flex: 1, 
-    backgroundColor: '#000000', 
+    backgroundColor: '#050505', 
     padding: 20 
   },
   title: { 
-    fontSize: 22, 
-    color: '#fff', 
-    fontWeight: 'bold', 
+    fontSize: 26, 
+    color: '#ffffff', 
+    fontWeight: '900', 
     textAlign: 'center', 
-    marginTop: 40, 
-    marginBottom: 20 
+    marginTop: 50, 
+    marginBottom: 40,
+    letterSpacing: 8,
+    textTransform: 'uppercase',
+    textShadowColor: 'rgba(50, 190, 94, 0.7)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 10,
   },
   card: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      backgroundColor: '#094e22',
-      marginBottom: 10,
-      padding: 15,
-      borderRadius: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#111111',
+    marginBottom: 15,
+    padding: 15,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#222',
   },
   rank: { 
-    fontSize: 18, 
-    color: '#94a3b8', 
-    fontWeight: 'bold', 
-    marginRight: 15 
+    fontSize: 20, 
+    color: '#32be5e', 
+    fontWeight: '900', 
+    marginRight: 15,
+    width: 35,
+    textAlign: 'center',
   },
   info: { 
     flex: 1 
   },
   username: { 
-    color: '#fff', 
-    fontWeight: 'bold',
-    fontSize: 16 
+    color: '#ffffff', 
+    fontWeight: '700',
+    fontSize: 16,
+    letterSpacing: 0.5
   },
   email: { 
-    color: '#cbd5e1', 
-    fontSize: 12 
+    color: '#666', 
+    fontSize: 11,
+    marginTop: 2
   },
   score: { 
-    fontSize: 20, 
-    fontWeight: 'bold', 
-    color: '#7b00ff' 
+    fontSize: 18, 
+    fontWeight: '800', 
+    color: '#32be5e',
+    backgroundColor: 'rgba(50, 190, 94, 0.1)',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 10,
+    overflow: 'hidden'
   },
 });
