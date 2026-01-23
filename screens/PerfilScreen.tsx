@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000000',
-        padding: 30,
+        padding: 25,
         justifyContent: 'center'
     },
     header: {
@@ -50,59 +50,81 @@ const styles = StyleSheet.create({
         marginBottom: 50
     },
     avatar: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        backgroundColor: '#00ff22',
+        width: 120,
+        height: 120,
+        borderRadius: 25,
+        backgroundColor: '#1a1a1a',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 25,
+        borderWidth: 2,
+        borderColor: '#32be5e',
+        transform: [{ rotate: '45deg' }],
     },
     avatarText: {
-        fontSize: 40,
-        color: '#1e293b',
-        fontWeight: 'bold'
+        fontSize: 45,
+        color: '#32be5e',
+        fontWeight: '900',
+        transform: [{ rotate: '-45deg' }],
     },
     username: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#fff'
+        fontSize: 32,
+        fontWeight: '900',
+        color: '#ffffff',
+        letterSpacing: 3,
+        textTransform: 'uppercase'
     },
     email: {
-        color: '#94a3b8',
-        marginTop: 5
+        color: '#32be5e',
+        fontSize: 12,
+        marginTop: 5,
+        fontWeight: 'bold',
+        letterSpacing: 1
     },
     stats: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 50,
-        gap: 10,
+        marginVertical: 40,
+        gap: 20
     },
     box: {
         flex: 1,
-        backgroundColor: '#004ab1',
-        padding: 20,
+        backgroundColor: '#0a0a0a',
+        paddingVertical: 20,
         alignItems: 'center',
-        borderRadius: 8
+        borderRadius: 0,
+        borderLeftWidth: 4,
+        borderLeftColor: '#32be5e',
+        
     },
     label: {
-        color: '#cbd5e1',
-        fontSize: 12,
-        marginBottom: 10
+        color: '#64748b',
+        fontSize: 10,
+        fontWeight: '900',
+        marginBottom: 5,
+        textTransform: 'uppercase'
     },
     value: {
-        fontSize: 24,
-        color: '#03ff31',
-        fontWeight: 'bold'
+        fontSize: 28,
+        color: '#ffffff',
+        fontWeight: '900'
     },
     button: {
         backgroundColor: '#ef4444',
-        padding: 15,
+        padding: 20,
         alignItems: 'center',
-        borderRadius: 8
+        borderRadius: 4,
+        shadowColor: '#ef4444',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.4,
+        shadowRadius: 15,
+        elevation: 10
     },
     buttonText: {
-        color: '#fff',
-        fontWeight: 'bold'
+        color: '#ffffff',
+        fontWeight: '900',
+        fontSize: 14,
+        letterSpacing: 4,
+        textTransform: 'uppercase'
     }
 });
