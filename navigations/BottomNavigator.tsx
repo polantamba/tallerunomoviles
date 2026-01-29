@@ -5,7 +5,6 @@ import { JuegoScreen } from '../screens/JuegoScreen';
 import { PuntuacionesScreen } from '../screens/PuntuacionesScreen';
 import { PerfilScreen } from '../screens/PerfilScreen';
 
-
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigator() {
@@ -48,30 +47,7 @@ export default function BottomNavigator() {
 }
 
 const styles = StyleSheet.create({
-    tabBar: {
-        backgroundColor: '#0a0a0a',
-        borderTopWidth: 2,
-        borderTopColor: '#1a1a1a',
-        height: 75,
-        paddingBottom: 15,
-        paddingTop: 10,
-        shadowColor: '#32be5e',
-        shadowOffset: { width: 0, height: -10 },
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
-        elevation: 20,
-    },
-    label: {
-        fontSize: 11,
-        fontWeight: '900',
-        textTransform: 'uppercase',
-        letterSpacing: 1,
-        marginTop: 5,
-    },
-    icon: {
-        fontSize: 24,
-        textShadowColor: 'rgba(50, 190, 94, 0.5)',
-        textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 10,
-    }
+    tabBar: { backgroundColor: '#0a0a0a', borderTopWidth: 2, borderTopColor: '#1a1a1a', height: 75, paddingBottom: 15, paddingTop: 10 },
+    label: { fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1, marginTop: 5 },
+    icon: { fontSize: 24 }
 });

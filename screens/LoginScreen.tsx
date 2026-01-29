@@ -1,30 +1,34 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { ref, get, child } from 'firebase/database';
-import { auth, db, setUsuarioActual } from '../firebase/Config';
+import { supabase, setUsuarioActual } from '../supabase/Config';
 
 export const LoginScreen = ({ navigation }: any) => {
-    const [email, setEmail] = useState('');
+    const [correo, setCorreo] = useState('');
     const [password, setPassword] = useState('');
 
-    const login = () => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const userId = userCredential.user.uid;
-                
-                get(child(ref(db), `usuarios/${userId}`)).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        setUsuarioActual(snapshot.val());
-                        navigation.replace('HomeTabs');
-                    } else {
-                        Alert.alert("Error", "Datos no encontrados");
-                    }
-                });
-            })
-            .catch((error) => {
-                Alert.alert("Error", "Login fallido: " + error.message);
+    const login = async () => {
+        try {
+            const { data: authData, error } = await supabase.auth.signInWithPassword({
+                email: correo,
+                password: password,
             });
+
+            if (error) throw error;
+
+            const { data: userData, error: userError } = await supabase
+                .from('usuarios')
+                .select('*')
+                .eq('id', authData.user.id)
+                .single();
+
+            if (userError) throw userError;
+
+            setUsuarioActual(userData);
+            navigation.replace('HomeTabs');
+
+        } catch (error: any) {
+            Alert.alert("Error", error.message);
+        }
     };
 
     return (
@@ -35,8 +39,8 @@ export const LoginScreen = ({ navigation }: any) => {
                 style={styles.input} 
                 placeholder="Correo" 
                 placeholderTextColor="#aaa"
-                value={email} 
-                onChangeText={setEmail} 
+                value={correo} 
+                onChangeText={setCorreo} 
                 autoCapitalize='none'
             />
             
