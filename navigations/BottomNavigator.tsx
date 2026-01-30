@@ -47,7 +47,22 @@ export default function BottomNavigator() {
 }
 
 const styles = StyleSheet.create({
-    tabBar: { backgroundColor: '#0a0a0a', borderTopWidth: 2, borderTopColor: '#1a1a1a', height: 75, paddingBottom: 15, paddingTop: 10 },
-    label: { fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1, marginTop: 5 },
-    icon: { fontSize: 24 }
+    tabBar: { 
+        backgroundColor: '#0a0a0a', 
+        borderTopWidth: 2, 
+        borderTopColor: '#1a1a1a', 
+        height: 75, 
+        paddingBottom: 15, 
+        paddingTop: 10 
+    },
+    label: { 
+        fontSize: 11, 
+        fontWeight: '900', 
+        textTransform: 'uppercase', 
+        letterSpacing: 1, 
+        marginTop: 5 
+    },
+    icon: { 
+        fontSize: 24 
+    }
 });

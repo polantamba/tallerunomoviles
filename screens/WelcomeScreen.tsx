@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+
 
 export const WelcomeScreen = ({ navigation }: any) => {
   return (
@@ -23,13 +24,77 @@ export const WelcomeScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#000000', justifyContent: 'center', padding: 40 },
-  content: { alignItems: 'center', marginBottom: 120 },
-  title: { fontSize: 50, fontWeight: '900', color: '#ffffff', letterSpacing: -2 },
-  subtitle: { fontSize: 12, color: '#32be5e', letterSpacing: 5, textTransform: 'uppercase', fontWeight: 'bold', backgroundColor: 'rgba(50, 190, 94, 0.1)', padding: 5 },
-  buttons: { width: '100%', gap: 15 },
-  btnMain: { backgroundColor: '#ffffff', paddingVertical: 20, alignItems: 'center', borderLeftWidth: 8, borderLeftColor: '#32be5e' },
-  textMain: { color: '#000000', fontWeight: '900', fontSize: 14, letterSpacing: 2 },
-  btnSec: { borderWidth: 1, borderColor: 'rgba(255, 255, 255, 0.2)', paddingVertical: 20, alignItems: 'center', backgroundColor: '#0a0a0a' },
-  textSec: { color: '#ffffff', fontWeight: '600', fontSize: 14, letterSpacing: 2 },
+  container: { 
+    flex: 1, 
+    backgroundColor: '#0f172a', 
+    justifyContent: 'center', 
+    paddingHorizontal: 30, 
+  },
+  
+  content: { 
+    alignItems: 'center', 
+    marginBottom: 80, 
+  },
+  
+  title: { 
+    fontSize: 48, 
+    fontWeight: '800', 
+    color: '#f8fafc', 
+    letterSpacing: -1, 
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  
+  subtitle: { 
+    fontSize: 13, 
+    color: '#c084fc', 
+    letterSpacing: 4, 
+    textTransform: 'uppercase', 
+    fontWeight: '700', 
+    backgroundColor: 'rgba(192, 132, 252, 0.15)',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8, 
+    overflow: 'hidden',
+  },
+  
+  buttons: { 
+    width: '100%', 
+    gap: 16, 
+  },
+  
+  btnMain: { 
+    backgroundColor: '#6366f1', 
+    paddingVertical: 18, 
+    alignItems: 'center', 
+    borderRadius: 16, 
+    shadowColor: '#6366f1',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    elevation: 8,
+  },
+  
+  textMain: { 
+    color: '#ffffff', 
+    fontWeight: '800', 
+    fontSize: 16, 
+    letterSpacing: 1,
+  },
+  
+  btnSec: { 
+    paddingVertical: 18, 
+    alignItems: 'center', 
+    backgroundColor: 'transparent', 
+    borderRadius: 16,
+    borderWidth: 1.5,
+    borderColor: '#334155', 
+  },
+  
+  textSec: { 
+    color: '#94a3b8', 
+    fontWeight: '600', 
+    fontSize: 15, 
+    letterSpacing: 1,
+  },
 });

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Dimensions} from 'react-native';
 import { supabase, usuarioActual } from '../supabase/Config'; 
 
 const { width, height } = Dimensions.get('window');
@@ -120,32 +120,49 @@ export const JuegoScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0a0f0d' },
+  container: { 
+    flex: 1, 
+    backgroundColor: '#0f172a' 
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingTop: 60,
-    paddingBottom: 30,
+    paddingBottom: 20,
     borderBottomWidth: 1,
-    borderColor: 'rgba(50, 190, 94, 0.2)',
+    borderColor: '#334155',
   },
   statBox: {
     alignItems: 'center',
-    backgroundColor: '#161b22',
-    padding: 10,
-    borderRadius: 12,
-    minWidth: 100,
+    backgroundColor: '#1e293b',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    minWidth: 110,
     borderWidth: 1,
-    borderColor: '#30363d'
+    borderColor: '#334155',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   label: {
-    fontSize: 10,
-    color: '#8b949e',
+    fontSize: 11,
+    color: '#94a3b8',
     fontWeight: '700',
-    marginBottom: 2,
+    marginBottom: 4,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
-  value: { fontSize: 22, color: '#32be5e', fontWeight: 'bold' },
-  gameArea: { flex: 1 },
+  value: { 
+    fontSize: 24, 
+    color: '#f8fafc', 
+    fontWeight: '800',
+  },
+  gameArea: { 
+    flex: 1 
+  },
   target: { 
     position: 'absolute', 
     width: 90, 
@@ -153,30 +170,39 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center',
     borderRadius: 45,
-    borderWidth: 2,
-    borderColor: '#32be5e',
+    borderWidth: 3,
+    borderColor: '#6366f1',
+    shadowColor: '#6366f1',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    elevation: 5,
   },
   innerTarget: {
-    width: 30,
-    height: 30,
-    borderRadius: 5,
-    backgroundColor: '#ffffff',
+    width: 32,
+    height: 32,
+    borderRadius: 8,
+    backgroundColor: '#e0e7ff',
     transform: [{ rotate: '45deg' }],
   },
   stopBtn: {
-    backgroundColor: '#1a1d23',
-    marginHorizontal: 50,
+    backgroundColor: '#6366f1',
+    marginHorizontal: 40,
     marginBottom: 50,
-    padding: 15,
-    borderRadius: 30,
+    padding: 20,
+    borderRadius: 16,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#32be5e',
+    shadowColor: '#6366f1',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
   },
   stopText: {
-    color: '#32be5e',
-    fontWeight: '800',
-    fontSize: 14,
-    letterSpacing: 5,
+    color: '#ffffff',
+    fontWeight: '900',
+    fontSize: 16,
+    letterSpacing: 4,
+    textTransform: 'uppercase',
   },
 });
