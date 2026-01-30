@@ -149,6 +149,7 @@ export const RegisterScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
+
     container: {
         flexGrow: 1,
         backgroundColor: '#0f172a',
