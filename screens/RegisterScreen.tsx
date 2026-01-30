@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, ScrollView, Image } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, ScrollView, Image} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { File } from 'expo-file-system';
 import { supabase } from '../supabase/Config';
@@ -66,9 +66,9 @@ export const RegisterScreen = ({ navigation }: any) => {
 
                 const { error: uploadError } = await supabase.storage
                     .from('jugadores')
-                    .upload(filePath, matrizBits, { 
-                        contentType: 'image/png', 
-                        upsert: true 
+                    .upload(filePath, matrizBits, {
+                        contentType: 'image/png',
+                        upsert: true
                     });
 
                 if (uploadError) throw uploadError;
@@ -105,7 +105,7 @@ export const RegisterScreen = ({ navigation }: any) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>REGISTRO</Text>
-            
+
             <View style={styles.avatarSection}>
                 <TouchableOpacity onPress={pickImage} style={styles.avatarPreview}>
                     {imageUri ? (
@@ -122,19 +122,19 @@ export const RegisterScreen = ({ navigation }: any) => {
 
             <View style={styles.form}>
                 <Text style={styles.label}>NOMBRE</Text>
-                <TextInput style={styles.input} value={nombre} onChangeText={setNombre} placeholder="Tu Nombre" placeholderTextColor="#aaa"/>
+                <TextInput style={styles.input} value={nombre} onChangeText={setNombre} placeholder="Tu Nombre" placeholderTextColor="#aaa" />
 
                 <Text style={styles.label}>EDAD</Text>
-                <TextInput style={styles.input} value={edad} onChangeText={setEdad} keyboardType="numeric" placeholder="Tu Edad" placeholderTextColor="#aaa"/>
+                <TextInput style={styles.input} value={edad} onChangeText={setEdad} keyboardType="numeric" placeholder="Tu Edad" placeholderTextColor="#aaa" />
 
                 <Text style={styles.label}>PAÍS</Text>
-                <TextInput style={styles.input} value={pais} onChangeText={setPais} placeholder="Tu País" placeholderTextColor="#aaa"/>
+                <TextInput style={styles.input} value={pais} onChangeText={setPais} placeholder="Tu País" placeholderTextColor="#aaa" />
 
                 <Text style={styles.label}>CORREO</Text>
-                <TextInput style={styles.input} value={correo} onChangeText={setCorreo} keyboardType="email-address" autoCapitalize='none' placeholder="correo@test.com" placeholderTextColor="#aaa"/>
+                <TextInput style={styles.input} value={correo} onChangeText={setCorreo} keyboardType="email-address" autoCapitalize='none' placeholder="correo@test.com" placeholderTextColor="#aaa" />
 
                 <Text style={styles.label}>CONTRASEÑA</Text>
-                <TextInput style={styles.input} value={password} onChangeText={setPassword} secureTextEntry placeholder="******" placeholderTextColor="#aaa"/>
+                <TextInput style={styles.input} value={password} onChangeText={setPassword} secureTextEntry placeholder="******" placeholderTextColor="#aaa" />
 
                 <TouchableOpacity style={[styles.button, loading && styles.buttonDisabled]} onPress={registrar} disabled={loading}>
                     <Text style={styles.buttonText}>{loading ? "CARGANDO..." : "CREAR CUENTA"}</Text>
@@ -149,19 +149,106 @@ export const RegisterScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-    container: { flexGrow: 1, backgroundColor: '#000000', padding: 30, justifyContent: 'center' },
-    title: { fontSize: 30, fontWeight: 'bold', color: '#36c150', marginBottom: 20, textAlign: 'center' },
-    avatarSection: { alignItems: 'center', marginBottom: 20 },
-    avatarPreview: { width: 100, height: 100, borderRadius: 50, backgroundColor: '#1e293b', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#36c150', overflow: 'hidden' },
-    avatarImage: { width: '100%', height: '100%' },
-    avatarPlaceholder: { color: '#36c150', fontSize: 40 },
-    photoButtons: { flexDirection: 'row', gap: 20, marginTop: 10 },
-    form: { gap: 15 },
-    label: { color: '#fff', fontSize: 12, fontWeight: 'bold' },
-    input: { backgroundColor: '#1e293b', color: '#fff', padding: 15, borderRadius: 8 },
-    button: { backgroundColor: '#36c150', padding: 15, borderRadius: 8, alignItems: 'center', marginTop: 10 },
-    buttonDisabled: { backgroundColor: '#1e293b' },
-    buttonText: { color: '#000', fontWeight: 'bold' },
-    link: { color: '#36c150', fontSize: 12, fontWeight: 'bold' },
-    linkBack: { color: '#94a3b8', textAlign: 'center', marginTop: 30 }
+    container: {
+        flexGrow: 1,
+        backgroundColor: '#0f172a',
+        padding: 30,
+        justifyContent: 'center'
+    },
+    title: {
+        fontSize: 32,
+        fontWeight: '800',
+        color: '#f8fafc',
+        marginBottom: 30,
+        textAlign: 'center',
+        letterSpacing: -1,
+    },
+    avatarSection: {
+        alignItems: 'center',
+        marginBottom: 30
+    },
+    avatarPreview: {
+        width: 110,
+        height: 110,
+        borderRadius: 55,
+        backgroundColor: '#1e293b',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: '#6366f1',
+        overflow: 'hidden',
+        shadowColor: '#6366f1',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
+        elevation: 8,
+    },
+    avatarImage: {
+        width: '100%',
+        height: '100%'
+    },
+    avatarPlaceholder: {
+        color: '#6366f1',
+        fontSize: 40,
+        fontWeight: 'bold'
+    },
+    photoButtons: {
+        flexDirection: 'row',
+        gap: 20,
+        marginTop: 15
+    },
+    form: {
+        gap: 20
+    },
+    label: {
+        color: '#94a3b8',
+        fontSize: 12,
+        fontWeight: '700',
+        textTransform: 'uppercase',
+        letterSpacing: 1,
+        marginBottom: 5,
+    },
+    input: {
+        backgroundColor: '#1e293b',
+        color: '#f8fafc',
+        padding: 18,
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#334155',
+        fontSize: 16,
+    },
+    button: {
+        backgroundColor: '#6366f1',
+        padding: 18,
+        borderRadius: 16,
+        alignItems: 'center',
+        marginTop: 10,
+        shadowColor: '#6366f1',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 8,
+        elevation: 6,
+    },
+    buttonDisabled: {
+        backgroundColor: '#334155',
+        shadowOpacity: 0,
+        elevation: 0,
+    },
+    buttonText: {
+        color: '#ffffff',
+        fontWeight: '800',
+        fontSize: 16,
+        letterSpacing: 0.5,
+    },
+    link: {
+        color: '#6366f1',
+        fontSize: 14,
+        fontWeight: '700',
+    },
+    linkBack: {
+        color: '#94a3b8',
+        textAlign: 'center',
+        marginTop: 40,
+        fontSize: 14,
+    }
 });

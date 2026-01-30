@@ -6,7 +6,7 @@ import { supabase, setUsuarioActual, usuarioActual } from '../supabase/Config';
 
 export const PerfilScreen = ({ navigation }: any) => {
     const [isEditing, setIsEditing] = useState(false);
-    
+
     const [tempNombre, setTempNombre] = useState(usuarioActual?.nombre);
     const [tempEdad, setTempEdad] = useState(usuarioActual?.edad);
     const [tempPais, setTempPais] = useState(usuarioActual?.pais);
@@ -21,24 +21,24 @@ export const PerfilScreen = ({ navigation }: any) => {
 
     const pickImage = async (useCamera: boolean) => {
         if (!isEditing) return;
-        
+
         let result;
         if (useCamera) {
-             const permission = await ImagePicker.requestCameraPermissionsAsync();
-             if (!permission.granted) return Alert.alert("Error", "Permiso requerido");
-             result = await ImagePicker.launchCameraAsync({ 
-                 mediaTypes: ['images'],
-                 allowsEditing: true, 
-                 aspect: [1,1], 
-                 quality: 0.5 
-             });
+            const permission = await ImagePicker.requestCameraPermissionsAsync();
+            if (!permission.granted) return Alert.alert("Error", "Permiso requerido");
+            result = await ImagePicker.launchCameraAsync({
+                mediaTypes: ['images'],
+                allowsEditing: true,
+                aspect: [1, 1],
+                quality: 0.5
+            });
         } else {
-             result = await ImagePicker.launchImageLibraryAsync({ 
-                 mediaTypes: ['images'],
-                 allowsEditing: true, 
-                 aspect: [1,1], 
-                 quality: 0.5 
-             });
+            result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ['images'],
+                allowsEditing: true,
+                aspect: [1, 1],
+                quality: 0.5
+            });
         }
 
         if (!result.canceled) {
@@ -56,10 +56,10 @@ export const PerfilScreen = ({ navigation }: any) => {
                 const matrizBits = await file.bytes();
 
                 const filePath = `usuarios/${usuarioActual.id}/foto.png`;
-                
-                await supabase.storage.from('jugadores').upload(filePath, matrizBits, { 
-                    contentType: 'image/png', 
-                    upsert: true 
+
+                await supabase.storage.from('jugadores').upload(filePath, matrizBits, {
+                    contentType: 'image/png',
+                    upsert: true
                 });
 
                 const { data } = supabase.storage.from('jugadores').getPublicUrl(filePath);
@@ -107,9 +107,9 @@ export const PerfilScreen = ({ navigation }: any) => {
 
                 {isEditing ? (
                     <View style={styles.editForm}>
-                        <TextInput style={styles.input} value={tempNombre} onChangeText={setTempNombre} placeholder="Nombre" placeholderTextColor="#666"/>
-                        <TextInput style={styles.input} value={tempEdad} onChangeText={setTempEdad} placeholder="Edad" keyboardType="numeric" placeholderTextColor="#666"/>
-                        <TextInput style={styles.input} value={tempPais} onChangeText={setTempPais} placeholder="País" placeholderTextColor="#666"/>
+                        <TextInput style={styles.input} value={tempNombre} onChangeText={setTempNombre} placeholder="Nombre" placeholderTextColor="#666" />
+                        <TextInput style={styles.input} value={tempEdad} onChangeText={setTempEdad} placeholder="Edad" keyboardType="numeric" placeholderTextColor="#666" />
+                        <TextInput style={styles.input} value={tempPais} onChangeText={setTempPais} placeholder="País" placeholderTextColor="#666" />
                     </View>
                 ) : (
                     <>
@@ -146,23 +146,139 @@ export const PerfilScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-    container: { flexGrow: 1, backgroundColor: '#000000', padding: 25 },
-    header: { alignItems: 'center', marginBottom: 30, marginTop: 20 },
-    avatar: { width: 120, height: 120, borderRadius: 60, borderWidth: 2, borderColor: '#32be5e', marginBottom: 15, backgroundColor: '#222' },
-    avatarEditing: { opacity: 0.7, borderColor: '#fff' },
-    editPhotoText: { color: '#32be5e', fontWeight: 'bold', marginBottom: 10 },
-    username: { fontSize: 32, fontWeight: '900', color: '#ffffff', letterSpacing: 2, textTransform: 'uppercase' },
-    email: { color: '#32be5e', fontSize: 12, marginTop: 5, fontWeight: 'bold' },
-    details: { color: '#888', marginTop: 5 },
-    editForm: { width: '100%', gap: 10, marginTop: 10 },
-    input: { backgroundColor: '#1e293b', color: '#fff', padding: 10, borderRadius: 5, textAlign: 'center' },
-    stats: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 40, gap: 20 },
-    box: { flex: 1, backgroundColor: '#0a0a0a', paddingVertical: 20, alignItems: 'center', borderLeftWidth: 4, borderLeftColor: '#32be5e' },
-    label: { color: '#64748b', fontSize: 10, fontWeight: '900', marginBottom: 5 },
-    value: { fontSize: 28, color: '#ffffff', fontWeight: '900' },
-    button: { padding: 20, alignItems: 'center', borderRadius: 4, marginBottom: 10 },
-    btnEdit: { backgroundColor: '#006f50' },
-    btnSave: { backgroundColor: '#32be5e' },
-    btnLogout: { backgroundColor: '#ef4444' },
-    buttonText: { color: '#ffffff', fontWeight: '900', fontSize: 14, letterSpacing: 2 }
+    container: {
+        flexGrow: 1,
+        backgroundColor: '#0f172a',
+        padding: 25
+    },
+    header: {
+        alignItems: 'center',
+        marginBottom: 30,
+        marginTop: 20
+    },
+    avatar: {
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        borderWidth: 3,
+        borderColor: '#6366f1',
+        marginBottom: 15,
+        backgroundColor: '#1e293b',
+        shadowColor: '#6366f1',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
+        elevation: 8,
+    },
+    avatarEditing: {
+        opacity: 0.7,
+        borderColor: '#f8fafc',
+    },
+    editPhotoText: {
+        color: '#6366f1',
+        fontWeight: '700',
+        marginBottom: 10,
+        fontSize: 14,
+    },
+    username: {
+        fontSize: 28,
+        fontWeight: '800',
+        color: '#f8fafc',
+        letterSpacing: 0.5,
+        textTransform: 'uppercase',
+        textAlign: 'center',
+    },
+    email: {
+        color: '#6366f1',
+        fontSize: 14,
+        marginTop: 5,
+        fontWeight: '600',
+    },
+    details: {
+        color: '#94a3b8',
+        marginTop: 5,
+        fontSize: 14,
+    },
+    editForm: {
+        width: '100%',
+        gap: 15,
+        marginTop: 15
+    },
+    input: {
+        backgroundColor: '#1e293b',
+        color: '#f8fafc',
+        padding: 16,
+        borderRadius: 12,
+        textAlign: 'center',
+        borderWidth: 1,
+        borderColor: '#334155',
+        fontSize: 16,
+    },
+    stats: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 40,
+        gap: 15
+    },
+    box: {
+        flex: 1,
+        backgroundColor: '#1e293b',
+        paddingVertical: 20,
+        alignItems: 'center',
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: '#334155',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    label: {
+        color: '#94a3b8',
+        fontSize: 11,
+        fontWeight: '700',
+        marginBottom: 5,
+        textTransform: 'uppercase',
+        letterSpacing: 1,
+    },
+    value: {
+        fontSize: 24,
+        color: '#f8fafc',
+        fontWeight: '800',
+    },
+    button: {
+        padding: 18,
+        alignItems: 'center',
+        borderRadius: 16,
+        marginBottom: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+    },
+    btnEdit: {
+        backgroundColor: '#1e293b',
+        borderWidth: 1,
+        borderColor: '#6366f1',
+    },
+    btnSave: {
+        backgroundColor: '#6366f1',
+        shadowColor: '#6366f1',
+        shadowOpacity: 0.3,
+        elevation: 5,
+    },
+    btnLogout: {
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        borderColor: '#ef4444',
+        marginTop: 10,
+    },
+    buttonText: {
+        color: '#f8fafc',
+        fontWeight: '800',
+        fontSize: 15,
+        letterSpacing: 0.5,
+    }
 });

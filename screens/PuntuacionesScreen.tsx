@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image} from 'react-native';
 import { supabase } from '../supabase/Config';
 
 export const PuntuacionesScreen = ({ navigation }: any) => {
@@ -56,55 +56,77 @@ export const PuntuacionesScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#050505', padding: 20 },
+  container: { 
+    flex: 1, 
+    backgroundColor: '#0f172a', 
+    padding: 20 
+  },
   title: { 
-    fontSize: 26, 
-    color: '#ffffff', 
-    fontWeight: '900', 
+    fontSize: 28, 
+    color: '#f8fafc', 
+    fontWeight: '800', 
     textAlign: 'center', 
     marginTop: 50, 
-    marginBottom: 40,
-    letterSpacing: 4,
+    marginBottom: 30,
+    letterSpacing: 2,
   },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#111111',
-    marginBottom: 15,
-    padding: 15,
-    borderRadius: 20,
+    backgroundColor: '#1e293b',
+    marginBottom: 16,
+    padding: 16,
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#222',
+    borderColor: '#334155',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   rank: { 
-    fontSize: 20, 
-    color: '#32be5e', 
+    fontSize: 22, 
+    color: '#6366f1', 
     fontWeight: '900', 
-    marginRight: 15,
-    width: 35,
+    marginRight: 16,
+    width: 40,
     textAlign: 'center',
   },
   avatarSmall: {
-    width: 40, 
-    height: 40, 
-    borderRadius: 20, 
-    marginRight: 10,
-    borderWidth: 1,
-    borderColor: '#32be5e'
+    width: 48, 
+    height: 48, 
+    borderRadius: 24, 
+    marginRight: 14,
+    borderWidth: 2,
+    borderColor: '#6366f1'
   },
   avatarPlaceholder: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#333',
-    marginRight: 10
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: '#334155',
+    marginRight: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  info: { flex: 1 },
-  username: { color: '#ffffff', fontWeight: '700', fontSize: 16 },
-  details: { color: '#666', fontSize: 11, marginTop: 2 },
+  info: { 
+    flex: 1 
+  },
+  username: { 
+    color: '#f8fafc', 
+    fontWeight: '700', 
+    fontSize: 16,
+    marginBottom: 4,
+  },
+  details: { 
+    color: '#94a3b8', 
+    fontSize: 12, 
+  },
   score: { 
-    fontSize: 18, 
+    fontSize: 20, 
     fontWeight: '800', 
-    color: '#32be5e',
+    color: '#6366f1',
+    letterSpacing: 0.5,
   },
 });
